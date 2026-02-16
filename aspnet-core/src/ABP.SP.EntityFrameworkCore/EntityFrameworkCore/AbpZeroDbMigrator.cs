@@ -1,0 +1,20 @@
+﻿using Abp.Domain.Uow;
+using Abp.EntityFrameworkCore;
+using Abp.MultiTenancy;
+using Abp.Zero.EntityFrameworkCore;
+
+namespace ABP.SP.EntityFrameworkCore;
+
+public class AbpZeroDbMigrator : AbpZeroDbMigrator<SPDbContext>
+{
+    public AbpZeroDbMigrator(
+        IUnitOfWorkManager unitOfWorkManager,
+        IDbPerTenantConnectionStringResolver connectionStringResolver,
+        IDbContextResolver dbContextResolver)
+        : base(
+            unitOfWorkManager,
+            connectionStringResolver,
+            dbContextResolver)
+    {
+    }
+}
