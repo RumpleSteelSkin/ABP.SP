@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ABP.SP.EntityFrameworkCore;
 
-public class SPDbContext : AbpZeroDbContext<Tenant, Role, User, SPDbContext>
+public class SPDbContext(DbContextOptions<SPDbContext> options)
+    : AbpZeroDbContext<Tenant, Role, User, SPDbContext>(options)
 {
-    /* Define a DbSet for each entity of the application */
-
-    public SPDbContext(DbContextOptions<SPDbContext> options)
-        : base(options)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ChangeAbpTablePrefix<Tenant, Role, User>("");
     }
 }
